@@ -115,7 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
             
             // Category match
             const matchesCategory = categoryFilter === "todos" || 
-                                    product.categoria.toLowerCase() === categoryFilter.toLowerCase();
+                                    product.categoria.toLowerCase() === categoryFilter.toLowerCase() ||
+                                    product.categoria.toLowerCase() === "compartilhável";
             
             // Origin match
             const matchesOrigin = originFilter === "todos" || 
