@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let searchFilter = "";
     let categoryFilter = "todos";
     let originFilter = "todos";
-    let sortBy = "preco-asc"; // default sorting
+    let sortBy = "alfabeto"; // default sorting
 
     // Parse URL parameters for pre-filtering (from home page categories)
     const urlParams = new URLSearchParams(window.location.search);
@@ -126,12 +126,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // 2. Sort products
-        if (sortBy === "preco-asc") {
-            filteredProducts.sort((a, b) => a.preco - b.preco);
-        } else if (sortBy === "preco-desc") {
-            filteredProducts.sort((a, b) => b.preco - a.preco);
-        } else if (sortBy === "alfabeto") {
+        if (sortBy === "alfabeto") {
             filteredProducts.sort((a, b) => a.nome.localeCompare(b.nome));
+        } else if (sortBy === "alfabeto-desc") {
+            filteredProducts.sort((a, b) => b.nome.localeCompare(a.nome));
         }
 
         // Update results counter
@@ -173,11 +171,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const card = document.createElement("article");
             card.className = "product-card animate-on-scroll animated";
             
-            // Premium formatter for prices in BRL
-            const formattedPrice = product.preco.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            });
+            // Prices removed, show availability instead
+            const formattedPrice = "Disponível";
 
             // Prefilled WhatsApp message
             const whatsAppText = encodeURIComponent(`Olá! Gostaria de saber mais informações e como comprar o perfume "${product.nome}" da marca "${product.marca}" (${product.tipo}), que vi no catálogo do site Clarim Perfumes.`);
@@ -426,13 +421,11 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.appendChild(modal);
         }
 
-        const formattedPrice = product.preco.toLocaleString('pt-BR', {
-            style: 'currency',
-            currency: 'BRL'
-        });
+        // Prices removed, show availability instead
+        const formattedPrice = "Disponível";
 
         // Prefilled WhatsApp message
-        const whatsAppText = encodeURIComponent(`Olá! Gostaria de comprar o perfume "${product.nome}" da marca "${product.marca}" (${product.tipo}) no valor de ${formattedPrice}, que vi no catálogo do site Clarim Perfumes.`);
+        const whatsAppText = encodeURIComponent(`Olá! Gostaria de saber mais informações e comprar o perfume "${product.nome}" da marca "${product.marca}" (${product.tipo}), que vi no catálogo do site Clarim Perfumes.`);
         const whatsAppLink = `https://wa.me/5514988025562?text=${whatsAppText}`;
 
         modal.innerHTML = `

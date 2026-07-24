@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
                 // Envia para o FormSubmit via AJAX
-                fetch("https://formsubmit.co/ajax/thiago.tenorio07@gmail.com", {
+                fetch("https://formsubmit.co/ajax/anacarolinammazeto1@gmail.com", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -238,4 +238,56 @@ document.addEventListener("DOMContentLoaded", () => {
             toast.classList.remove("show");
         }, 4000);
     }
+
+    // 8. NEWSLETTER AJAX SUBMISSION
+    const newsletterForms = document.querySelectorAll(".newsletter-form");
+    newsletterForms.forEach(form => {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const emailInput = form.querySelector('input[type="email"]');
+            const submitBtn = form.querySelector('.newsletter-submit');
+            
+            if (emailInput && emailInput.value) {
+                const emailValue = emailInput.value.trim();
+                const originalBtnText = submitBtn ? submitBtn.textContent : "Enviar";
+                
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = "Enviando...";
+                }
+                
+                const formData = {
+                    Email: emailValue,
+                    Mensagem: `O e-mail ${emailValue} tem interesse em receber novidades da loja.`
+                };
+                
+                fetch("https://formsubmit.co/ajax/anacarolinammazeto1@gmail.com", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showToast("Inscrição na newsletter realizada com sucesso!", "success");
+                        form.reset();
+                    } else {
+                        throw new Error("Erro de resposta do servidor");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao assinar newsletter:", error);
+                    showToast("Erro ao se inscrever na newsletter. Tente novamente.", "error");
+                })
+                .finally(() => {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalBtnText;
+                    }
+                });
+            }
+        });
+    });
 });
