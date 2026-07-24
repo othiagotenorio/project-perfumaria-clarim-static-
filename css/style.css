@@ -296,7 +296,7 @@ button {
     align-items: center;
     position: relative;
     background: linear-gradient(to right, rgba(18, 18, 18, 0.95) 40%, rgba(18, 18, 18, 0.3) 100%), 
-                url('../assets/banners/hero.png') center/cover no-repeat;
+                url('../assets/banners/capa-fundo.webp') center/cover no-repeat;
     padding-top: var(--header-height);
 }
 
@@ -1788,7 +1788,7 @@ textarea.form-control {
     
     .hero {
         background: linear-gradient(180deg, rgba(18, 18, 18, 0.9) 0%, rgba(18, 18, 18, 0.8) 100%), 
-                    url('../assets/banners/hero.png') center/cover no-repeat;
+                    url('../assets/banners/capa-fundo.webp') center/cover no-repeat;
         text-align: center;
     }
     

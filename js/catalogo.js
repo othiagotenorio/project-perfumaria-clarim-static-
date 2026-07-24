@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Prefilled WhatsApp message
             const whatsAppText = encodeURIComponent(`Olá! Gostaria de saber mais informações e como comprar o perfume "${product.nome}" da marca "${product.marca}" (${product.tipo}), que vi no catálogo do site Clarim Perfumes.`);
-            const whatsAppLink = `https://wa.me/5500000000000?text=${whatsAppText}`;
+            const whatsAppLink = `https://wa.me/5514988025562?text=${whatsAppText}`;
 
             card.innerHTML = `
                 <span class="product-tag">${product.tipo}</span>
@@ -433,7 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Prefilled WhatsApp message
         const whatsAppText = encodeURIComponent(`Olá! Gostaria de comprar o perfume "${product.nome}" da marca "${product.marca}" (${product.tipo}) no valor de ${formattedPrice}, que vi no catálogo do site Clarim Perfumes.`);
-        const whatsAppLink = `https://wa.me/5500000000000?text=${whatsAppText}`;
+        const whatsAppLink = `https://wa.me/5514988025562?text=${whatsAppText}`;
 
         modal.innerHTML = `
             <div class="modal-box">

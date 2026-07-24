@@ -130,9 +130,46 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             if (isValid) {
-                // Mock form submission
-                showToast("Mensagem enviada com sucesso! Entraremos em contato em breve.", "success");
-                contactForm.reset();
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.textContent;
+
+                // Bloqueia o botão e mostra estado de envio
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Enviando...";
+
+                const formData = {
+                    Nome: nameInput.value,
+                    Email: emailInput.value,
+                    Telefone: phoneInput.value,
+                    Mensagem: messageInput.value
+                };
+
+                // Envia para o FormSubmit via AJAX
+                fetch("https://formsubmit.co/ajax/thiago.tenorio07@gmail.com", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showToast("Mensagem enviada com sucesso! Entraremos em contato em breve.", "success");
+                        contactForm.reset();
+                    } else {
+                        throw new Error("Erro de resposta do servidor");
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro ao enviar o formulário:", error);
+                    showToast("Erro ao enviar a mensagem. Por favor, tente novamente.", "error");
+                })
+                .finally(() => {
+                    // Libera o botão novamente
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                });
             }
         });
     }
